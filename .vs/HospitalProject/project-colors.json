@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "5bc2feb8-2b88-4c56-a1fd-386ae592e3cc": {
+      "ProjectGuid": "5bc2feb8-2b88-4c56-a1fd-386ae592e3cc",
+      "DisplayName": "HospitalProject",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}

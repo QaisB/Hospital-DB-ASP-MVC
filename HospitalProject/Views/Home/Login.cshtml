@@ -1,0 +1,48 @@
+﻿@model HospitalProject.Models.User
+
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    <fieldset>
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+            <div style="border: 1px solid red">
+                @ViewBag.Message
+            </div>
+        }
+        <table>
+            <tr>
+                <td>@Html.LabelFor(a => a.Name)</td>
+                <td>@Html.TextBoxFor(a => a.Name)</td>
+                <td>@Html.ValidationMessageFor(a => a.Name)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(a => a.Pass)
+                </td>
+                <td>
+                    @Html.PasswordFor(a => a.Pass)
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(a => a.Pass)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Login" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </fieldset>
+}

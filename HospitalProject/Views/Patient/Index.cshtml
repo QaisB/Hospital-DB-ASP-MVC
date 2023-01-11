@@ -1,0 +1,93 @@
+﻿@model IEnumerable<HospitalProject.Models.Patient>
+@using HospitalProject.Models
+
+@{
+    ViewBag.Title = "Patients";
+}
+
+<h2>Patients</h2>
+
+@Html.ActionLink("Home", "Index", "Home") |
+@Html.ActionLink("Doctor", "Index", "Doctor") |
+@Html.ActionLink("Patient", "Index", "Patient") |
+@Html.ActionLink("Visit", "Index", "Visit")
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Show All", "Index")
+</p>
+
+@using (Html.BeginForm("Index", "Patient", FormMethod.Get))
+{
+    <b>Search By:</b>
+    @Html.RadioButton("SearchBy", "Name", true) <text>Name</text>
+    @Html.RadioButton("SearchBy", "DoctorId", true) <text>Doctors Name</text>
+    <br />
+    @Html.TextBox("search")
+    <input type="submit" value="Search" />
+}
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dob)
+            </th>
+            <th>Doctor Name</th>
+            <th></th>
+        </tr>
+
+        @if (Model.Count() == 0)
+        {
+        <tr>
+            <td colspan="6">No rows matched</td>
+        </tr>
+        }
+        else
+        {
+        
+        foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dob)
+                </td>
+                <td>
+                    @Html.ActionLink(item.doctor.Name, "Details", "Doctor", new { id = item.DoctorId }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+        }
+
+    </table>

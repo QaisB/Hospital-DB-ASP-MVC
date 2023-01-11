@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Hospital Home</h2>
+
+@Html.ActionLink("Home", "Index", "Home") |
+@Html.ActionLink("Doctor", "Index", "Doctor") |
+@Html.ActionLink("Patient", "Index", "Patient") |
+@Html.ActionLink("Visit", "Index", "Visit") |
+@Html.ActionLink("Login", "Login", "Home")
+
+
+@if (Session["UserName"] != null){
+    <h3> Welcome @Session["UserName"].ToString() </h3>
+}

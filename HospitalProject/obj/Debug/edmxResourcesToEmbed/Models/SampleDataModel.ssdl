@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblDoctor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Office" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Telephone" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblPatient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Telephone" Type="varchar" MaxLength="50" />
+    <Property Name="Dob" Type="date" />
+    <Property Name="DoctorId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblVisit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoctorId" Type="int" />
+    <Property Name="PatientId" Type="int" />
+    <Property Name="VisitDate" Type="date" />
+    <Property Name="Complaint" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__tblPatien__Docto__25869641">
+    <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="0..1" />
+    <End Role="tblPatient" Type="Self.tblPatient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDoctor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblPatient">
+        <PropertyRef Name="DoctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblVisit__Doctor__286302EC">
+    <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="0..1" />
+    <End Role="tblVisit" Type="Self.tblVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDoctor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblVisit">
+        <PropertyRef Name="DoctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblVisit__Patien__29572725">
+    <End Role="tblPatient" Type="Self.tblPatient" Multiplicity="0..1" />
+    <End Role="tblVisit" Type="Self.tblVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPatient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblVisit">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelsStoreContainer">
+    <EntitySet Name="tblDoctor" EntityType="Self.tblDoctor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPatient" EntityType="Self.tblPatient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblVisit" EntityType="Self.tblVisit" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblPatien__Docto__25869641" Association="Self.FK__tblPatien__Docto__25869641">
+      <End Role="tblDoctor" EntitySet="tblDoctor" />
+      <End Role="tblPatient" EntitySet="tblPatient" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblVisit__Doctor__286302EC" Association="Self.FK__tblVisit__Doctor__286302EC">
+      <End Role="tblDoctor" EntitySet="tblDoctor" />
+      <End Role="tblVisit" EntitySet="tblVisit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblVisit__Patien__29572725" Association="Self.FK__tblVisit__Patien__29572725">
+      <End Role="tblPatient" EntitySet="tblPatient" />
+      <End Role="tblVisit" EntitySet="tblVisit" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
